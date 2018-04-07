@@ -20,12 +20,13 @@ public:
 
 int FindPathToNode(Node* From, Node* To, int depth = 0)
 {
-	// base case
+	// Successfully found the node we are looking for, so pass it up the call stack.
 	if (From == To)
 	{
 		return depth;
 	}
 
+	// Reached a dead end, so return -1.
 	if (!From)
 	{
 		return -1;
@@ -63,10 +64,8 @@ int main()
 	head->children[0]->children[0]->InsertNode();
 
 	head->children[0]->children[0]->children[0]->InsertNode();
-	Node* destination = head->children[0]->children[0]->children[0]->InsertNode();
 	head->children[0]->children[0]->children[0]->InsertNode();
-
-	nullptr;
+	Node* destination = head->children[0]->children[0]->children[0]->InsertNode();
 
 	int depth = FindPathToNode(head, destination);
 
