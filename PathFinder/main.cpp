@@ -1,14 +1,18 @@
 #include <vector>
 #include <iostream>
+#include <DirectXMath.h>
 
 using namespace std;
+using namespace DirectX;
 
 class Node
 {
 public:
-	vector<Node*> children;
-
-	int depth = 0;
+	Node() 
+		:
+		depth(0),
+		position(XMFLOAT2(0.f, 0.f))
+	{}
 
 	Node* InsertNode()
 	{
@@ -16,6 +20,17 @@ public:
 		children.back()->depth = depth + 1;
 		return children.back();
 	}
+
+	Node* InsertNode(Node* pNode)
+	{
+		children.push_back(pNode);
+		children.back()->depth = depth + 1;
+		return children.back();
+	}
+
+	int depth = 0;
+	XMFLOAT2 position;
+	vector<Node*> children;
 };
 
 int FindPathToNode(Node* From, Node* To, int depth = 0)
